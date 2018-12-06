@@ -1,0 +1,25 @@
+.morph_link {
+    position: relative;
+}
+
+.morph_link:hover {
+    color: #fa4e40;
+}
+
+.morph_link:hover svg {
+    opacity: 1;
+}
+
+.morph_link svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 0.25s;
+    z-index: -1;
+}
+
+.parallax__layer {
+    transition: transform 0.35s;
+}

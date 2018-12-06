@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Showreel</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/snap.svg/0.5.1/snap.svg-min.js"></script>
+</head>
+<body>
+<style>
+    a {
+        position: relative;
+        display: inline-block;
+        font: 400 14px/1 MuseoSansCyrl, sans-serif;
+        letter-spacing: .025em;
+        color: #5766d3;
+        white-space: nowrap;
+        padding: 10px 15px;
+    }
+
+    a.big {
+        position: relative;
+        display: inline-block;
+        font: 400 24px/1 MuseoSansCyrl, sans-serif;
+        letter-spacing: .025em;
+        color: #5766d3;
+        white-space: nowrap;
+    }
+
+    .parallax {
+        height: 400px;
+        position: relative;
+    }
+
+    .parallax__layer {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
+
+    .parallax__layer.one {
+        background-image: linear-gradient(
+                45deg,
+                transparent 25%,
+                #5F5370 25%,
+                #5F5370 50%,
+                transparent 50%,
+                transparent 75%,
+                #5F5370 75%,
+                #5F5370 100%
+        );
+        background-size: 56.57px 56.57px;
+    }
+
+    .parallax__layer.two {
+        background-image: linear-gradient(
+                29deg,
+                transparent 25%,
+                #703a3b 25%,
+                #703a3b 50%,
+                transparent 50%,
+                transparent 75%,
+                #703a3b 75%,
+                #703a3b 100%
+        );
+        background-size: 82.51px 45.73px;
+    }
+
+    .parallax__layer.three {
+        background-image: linear-gradient(
+                155deg,
+                transparent 25%,
+                #1a700e 25%,
+                #1a700e 50%,
+                transparent 50%,
+                transparent 75%,
+                #1a700e 75%,
+                #1a700e 100%
+        );
+        background-size: 94.65px 44.14px;
+    }
+</style>
+<div class="link_animation">
+    <h1>Анимация ссылок</h1>
+    <a href="#" class="morph_link">Ссылка с текстом</a>
+    <br>
+    <br>
+    <a href="#" class="big morph_link">БОЛЬШАЯ ССЫЛКА</a>
+</div>
+
+<h1>Паралакс при движении мыши</h1>
+<div class="parallax">
+    <div class="parallax__layer one" data-momentum="0.1">
+
+    </div>
+    <div class="parallax__layer two" data-momentum="0.15">
+
+    </div>
+    <div class="parallax__layer three" data-momentum="0.25">
+
+    </div>
+</div>
+<div class="preloader">
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/snap.svg/0.5.1/snap.svg-min.js"></script>
+<link rel="stylesheet" href="animations.css">
+<script src="animations.js"></script>
+</body>
+</html>
