@@ -42,17 +42,19 @@ var LinkAnimation = (function () {
     };
 
     function appendBubble(link) {
+        var canvas = document.createElement('canvas');
         var svg = LINK_BUBBLE_SVG.cloneNode(true);
-        // var link_size = link.getBoundingClientRect();
-        var link_size = {
-            width: link.offsetWidth,
-            height: link.offsetHeight
-        };
-
+        var link_size = link.getBoundingClientRect();
         var size_attribute = link_size.width > link_size.height ? 'height' : 'width';
         svg.setAttribute(size_attribute, link_size[size_attribute]);
 
         link.appendChild(svg);
+        var svg_size = svg.getBoundingClientRect();
+        svg.setAttribute('viewBox', '0 0 ' + Math.ceil(svg_size.width + 2) + ' ' + Math.ceil(svg_size.height + 2));
+
+        canvas.setAttribute('width', Math.ceil(svg_size.width));
+        canvas.setAttribute('height', Math.ceil(svg_size.height));
+        link.appendChild(canvas);
     }
 
     function initLinks() {
@@ -76,6 +78,7 @@ var LinkAnimation = (function () {
 
     function animate(link) {
         var svg = link.getElementsByClassName('link_bubble')[0];
+        var canvas = link.getElementsByTagName('canvas')[0];
 
         var s = Snap(svg);
         var shape = s.select('.morph-shape-start');
@@ -95,16 +98,52 @@ var LinkAnimation = (function () {
             }
         };
 
+        var svg2canvas = function () {
+            //TODO оптимизировать
+            canvg(canvas, svg.outerHTML);
+            setTimeout(svg2canvas, 35)
+        };
+
         loop();
-    }
-
-    function stop(link) {
-        var svg = link.getElementsByClassName('link_bubble')[0];
-
-        var s = Snap(svg);
-        var shape = s.select('.morph-shape-start');
-        shape.stop();
+        svg2canvas();
     }
 })();
 
 LinkAnimation.init();
+
+
+var parallaxOnMouse = {
+    container: undefined,
+    layers: undefined,
+    layer_count: undefined,
+
+    addMouseMoveListener: function addMouseMoveListener() {
+        var throttled_function = throttle(parallaxOnMouse.moveLayers, 100);
+
+        document.addEventListener('mousemove', throttled_function);
+    },
+
+    moveLayers: function moveLayers(event) {
+        var mouse_x = event.x;
+
+        for (var i = 0; i < parallaxOnMouse.layer_count; i++) {
+            var layer = parallaxOnMouse.layers[i];
+            var momentum = layer.getAttribute('data-momentum');
+            var offset = mouse_x * momentum;
+
+            parallaxOnMouse.layers[i].style.transform = 'translateX(' + offset + 'px)';
+        }
+    },
+
+    init: function init(container, layers) {
+        parallaxOnMouse.container = container;
+        parallaxOnMouse.layers = layers;
+        parallaxOnMouse.layer_count = layers.length;
+
+        parallaxOnMouse.addMouseMoveListener()
+    }
+};
+
+var parallax_container = document.getElementsByClassName('parallax')[0];
+var parallax_layers = document.getElementsByClassName('parallax__layer');
+parallaxOnMouse.init(parallax_container, parallax_layers);

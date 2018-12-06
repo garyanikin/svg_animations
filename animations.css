@@ -2,12 +2,13 @@
     position: relative;
 }
 
-.morph_link.active svg,
-.morph_link:hover svg {
+.morph_link.active canvas,
+.morph_link:hover canvas {
     opacity: 1;
 }
 
-.morph_link svg {
+.morph_link svg,
+.morph_link canvas {
     position: absolute;
     top: 50%;
     left: 50%;
