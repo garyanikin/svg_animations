@@ -2,10 +2,7 @@
     position: relative;
 }
 
-.morph_link:hover {
-    color: #fa4e40;
-}
-
+.morph_link.active svg,
 .morph_link:hover svg {
     opacity: 1;
 }

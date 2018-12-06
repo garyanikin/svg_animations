@@ -55,20 +55,6 @@ var LinkAnimation = (function () {
         link.appendChild(svg);
     }
 
-    function addListener(link) {
-        link.onmouseenter = function(event) {
-            var target = event.target;
-
-            animate(target);
-        };
-
-        link.onmouseleave = function(event) {
-            var target = event.target;
-
-            stop(target);
-        };
-    }
-
     function initLinks() {
 
         // Не включаем анимацию на мобильных устройствах
@@ -84,7 +70,7 @@ var LinkAnimation = (function () {
             var link = links[i].node;
 
             appendBubble(link);
-            addListener(link);
+            animate(link);
         }
     }
 
