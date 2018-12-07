@@ -16,34 +16,37 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/index.html">
+      <file leaf-file-name="animations.css" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/animations.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="273">
-              <caret line="118" lean-forward="true" selection-start-line="118" selection-end-line="118" />
+            <state relative-caret-position="318">
+              <caret line="40" column="1" lean-forward="true" selection-start-line="40" selection-start-column="1" selection-end-line="40" selection-end-column="1" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="animations.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/animations.js">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="333">
-              <caret line="97" column="21" selection-start-line="97" selection-start-column="21" selection-end-line="97" selection-end-column="21" />
+            <state relative-caret-position="319">
+              <caret line="133" column="7" lean-forward="true" selection-start-line="133" selection-start-column="7" selection-end-line="133" selection-end-column="7" />
               <folding>
-                <element signature="n#style#0;n#path#1;n#g#0;n#g#0;n#svg#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#path#2;n#g#0;n#g#0;n#svg#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#path#3;n#g#0;n#g#0;n#svg#0;n#!!top" expanded="true" />
+                <element signature="n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="animations.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/animations.css">
+      <file leaf-file-name="animations.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/animations.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="17" column="32" lean-forward="true" selection-start-line="17" selection-start-column="32" selection-end-line="17" selection-end-column="32" />
+            <state relative-caret-position="305">
+              <caret line="191" column="58" selection-start-line="191" selection-start-column="58" selection-end-line="191" selection-end-column="58" />
+              <folding>
+                <element signature="n#style#0;n#path#1;n#g#0;n#g#0;n#svg#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#path#2;n#g#0;n#g#0;n#svg#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#path#3;n#g#0;n#g#0;n#svg#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -70,10 +73,12 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/app.js" />
+        <option value="$PROJECT_DIR$/builds/index.html" />
+        <option value="$PROJECT_DIR$/molecula.svg" />
         <option value="$PROJECT_DIR$/animations.min.js" />
+        <option value="$PROJECT_DIR$/animations.js" />
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/animations.css" />
-        <option value="$PROJECT_DIR$/animations.js" />
       </list>
     </option>
   </component>
@@ -105,6 +110,11 @@
               <item name="alibek_animations" type="b2602c69:ProjectViewProjectNode" />
               <item name="alibek_animations" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="alibek_animations" type="b2602c69:ProjectViewProjectNode" />
+              <item name="alibek_animations" type="462c0819:PsiDirectoryNode" />
+              <item name="animations.js" type="620a8d5e:NestingTreeNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -115,6 +125,14 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -138,7 +156,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1544035207684</updated>
-      <workItem from="1544035208853" duration="23740000" />
+      <workItem from="1544035208853" duration="28535000" />
     </task>
     <task id="LOCAL-00001" summary="Анимация ссылок происходит постоянно + фикс для IE (boundingRect)">
       <created>1544087092952</created>
@@ -154,11 +172,25 @@
       <option name="project" value="LOCAL" />
       <updated>1544092170901</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Убрал canvas так как он выкидывает ошибки в IE 11 и ниже">
+      <created>1544165696578</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1544165696578</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Анимация шапки: паралакс + молекулы. SVGMorph.">
+      <created>1544183698808</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1544183698808</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="23740000" />
+    <option name="totallyTimeSpent" value="28535000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="820" extended-state="0" />
@@ -171,9 +203,9 @@
       <window_info anchor="right" id="Database" />
       <window_info anchor="bottom" id="Database Changes" show_stripe_button="false" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Version Control" />
+      <window_info anchor="bottom" id="Version Control" visible="true" weight="0.32918397" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" visible="true" weight="0.32918397" />
+      <window_info anchor="bottom" id="Terminal" weight="0.32918397" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info id="Favorites" side_tool="true" />
       <window_info anchor="bottom" id="Find" order="1" />
@@ -194,7 +226,9 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Анимация ссылок происходит постоянно + фикс для IE (boundingRect)" />
     <MESSAGE value="Рендер SVG в canvas" />
-    <option name="LAST_COMMIT_MESSAGE" value="Рендер SVG в canvas" />
+    <MESSAGE value="Убрал canvas так как он выкидывает ошибки в IE 11 и ниже" />
+    <MESSAGE value="Анимация шапки: паралакс + молекулы. SVGMorph." />
+    <option name="LAST_COMMIT_MESSAGE" value="Анимация шапки: паралакс + молекулы. SVGMorph." />
   </component>
   <component name="editorHistoryManager">
     <entry file="jar://$APPLICATION_HOME_DIR$/lib/phpstorm.jar!/resources/html5-schema/svg11/svg-shape.rnc">
@@ -211,9 +245,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/builds/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="306" column="29" lean-forward="true" selection-start-line="306" selection-start-column="29" selection-end-line="306" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="215">
+        <state relative-caret-position="159450">
           <caret line="10630" column="73" selection-start-line="10630" selection-start-column="61" selection-end-line="10630" selection-end-column="73" />
         </state>
       </provider>
@@ -221,33 +262,39 @@
     <entry file="file://$PROJECT_DIR$/animations.min.js">
       <provider selected="true" editor-type-id="text-editor">
         <state>
-          <caret column="846" selection-start-column="846" selection-end-column="846" />
+          <caret column="3585" selection-start-column="3585" selection-end-column="3585" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="118" lean-forward="true" selection-start-line="118" selection-end-line="118" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/animations.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" column="32" lean-forward="true" selection-start-line="17" selection-start-column="32" selection-end-line="17" selection-end-column="32" />
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/molecula.svg">
+      <provider selected="true" editor-type-id="images" />
     </entry>
     <entry file="file://$PROJECT_DIR$/animations.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="333">
-          <caret line="97" column="21" selection-start-line="97" selection-start-column="21" selection-end-line="97" selection-end-column="21" />
+        <state relative-caret-position="305">
+          <caret line="191" column="58" selection-start-line="191" selection-start-column="58" selection-end-line="191" selection-end-column="58" />
           <folding>
             <element signature="n#style#0;n#path#1;n#g#0;n#g#0;n#svg#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#path#2;n#g#0;n#g#0;n#svg#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#path#3;n#g#0;n#g#0;n#svg#0;n#!!top" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="319">
+          <caret line="133" column="7" lean-forward="true" selection-start-line="133" selection-start-column="7" selection-end-line="133" selection-end-column="7" />
+          <folding>
+            <element signature="n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/animations.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="318">
+          <caret line="40" column="1" lean-forward="true" selection-start-line="40" selection-start-column="1" selection-end-line="40" selection-end-column="1" />
         </state>
       </provider>
     </entry>

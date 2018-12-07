@@ -187,3 +187,8 @@ var parallaxOnMouse = {
 var parallax_container = document.getElementsByClassName('parallax')[0];
 var parallax_layers = document.getElementsByClassName('parallax__layer');
 parallaxOnMouse.init(parallax_container, parallax_layers);
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    document.getElementById('parallax_svg').classList.add("show");
+});
