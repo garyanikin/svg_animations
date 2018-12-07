@@ -11,29 +11,32 @@ var isMobile = !!navigator.userAgent.match(/(iPad)|(iPhone)|(iPod)|(android)|(we
  * @param context
  * @returns {Function}
  */
-function throttle(callback, wait, context = this) {
-    var timeout = null;
-    var callbackArgs = null;
+function throttle() {
 
-    var later = () => {
-        callback.apply(context, callbackArgs);
-        timeout = null;
-    };
-
-    return function() {
-        if (!timeout) {
-            callbackArgs = arguments;
-            timeout = setTimeout(later, wait);
-        }
-    }
 }
+// function throttle(callback, wait, context = this) {
+//     var timeout = null;
+//     var callbackArgs = null;
+//
+//     var later = () => {
+//         callback.apply(context, callbackArgs);
+//         timeout = null;
+//     };
+//
+//     return function() {
+//         if (!timeout) {
+//             callbackArgs = arguments;
+//             timeout = setTimeout(later, wait);
+//         }
+//     }
+// }
 
 /**
  * Анимация ссылок, при наведении на ссылку под ней появляется анимированный пузырь
  * @type {{}}
  */
 var LinkAnimation = (function () {
-    var LINK_BUBBLE = '<svg class="link_bubble" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 51.1 35.3" preserveAspectRatio="xMidYMid slice"><g class="canvas-svg" data-name="link-blob"><g class="morph" data-name="link-blob-anim"><path class="morph-shape-start" fill="#3043CA" d="M11.6,5.4c-1.7,1.1-8.7,5.5-9.9,11.9c-1.5,7.8,6,14.7,14.2,17c10.1,2.8,23.4-0.7,29.6-8.7c0.6-0.8,4.5-6.1,3.1-12.2C46.4,4.6,34.3,0,24.1,1C17.6,1.7,13,4.6,11.6,5.4z"></path><path style="opacity: 0;" class="morph-shape-step" data-timing="0.7" fill="#3043CA" d="M11.6,5.4c-1.7,1.1-8.7,5.5-9.9,11.9c-1.5,7.8,6,14.7,14.2,17c10.1,2.8,23.4-0.7,29.6-8.7c0.6-0.8,4.5-6.1,3.1-12.2C46.4,4.6,34.3,0,24.1,1C17.6,1.7,13,4.6,11.6,5.4z"></path><path style="opacity: 0;" class="morph-shape-step" data-timing="0.7" fill="#3043CA" d="M8.1,8.9c-1.7,1.1-6.7,6.5-7.9,13c-1.5,7.8,6.9,12.3,14.7,9c16.9-7.3,22.4,3.3,28.6-4.7C44,25.3,48,18.3,50,12.4C55.3-3,38.8,1.1,28.6,1.5C18.3,2,9.5,8.1,8.1,8.9z"></path><path style="opacity: 0;" class="morph-shape-step" data-timing="0.7" fill="#3043CA" d="M6.5,8.9c-1.8,1.1-8.1,7.7-6,14c2.6,7.6,6.7,10.1,15.2,11c16.9,1.7,22.4-0.2,28.6-8.2c0.6-0.8,8.3-4.2,6.6-10.2C47.1,2.5,38.2-0.4,27.9,0C17.6,0.5,7.8,8.1,6.5,8.9z"></path></g></g></svg>';
+    var LINK_BUBBLE = '<svg class="link_bubble" xmlns="http://www.w3.org/2000/svg" width="52" height="36" viewBox="0 0 51.1 35.3" preserveAspectRatio="xMidYMid slice"><g class="canvas-svg" data-name="link-blob"><g class="morph" data-name="link-blob-anim"><path class="morph-shape-start" fill="#3043CA" d="M11.6,5.4c-1.7,1.1-8.7,5.5-9.9,11.9c-1.5,7.8,6,14.7,14.2,17c10.1,2.8,23.4-0.7,29.6-8.7c0.6-0.8,4.5-6.1,3.1-12.2C46.4,4.6,34.3,0,24.1,1C17.6,1.7,13,4.6,11.6,5.4z"></path><path style="opacity: 0;" class="morph-shape-step" data-timing="0.7" fill="#3043CA" d="M11.6,5.4c-1.7,1.1-8.7,5.5-9.9,11.9c-1.5,7.8,6,14.7,14.2,17c10.1,2.8,23.4-0.7,29.6-8.7c0.6-0.8,4.5-6.1,3.1-12.2C46.4,4.6,34.3,0,24.1,1C17.6,1.7,13,4.6,11.6,5.4z"></path><path style="opacity: 0;" class="morph-shape-step" data-timing="0.7" fill="#3043CA" d="M8.1,8.9c-1.7,1.1-6.7,6.5-7.9,13c-1.5,7.8,6.9,12.3,14.7,9c16.9-7.3,22.4,3.3,28.6-4.7C44,25.3,48,18.3,50,12.4C55.3-3,38.8,1.1,28.6,1.5C18.3,2,9.5,8.1,8.1,8.9z"></path><path style="opacity: 0;" class="morph-shape-step" data-timing="0.7" fill="#3043CA" d="M6.5,8.9c-1.8,1.1-8.1,7.7-6,14c2.6,7.6,6.7,10.1,15.2,11c16.9,1.7,22.4-0.2,28.6-8.2c0.6-0.8,8.3-4.2,6.6-10.2C47.1,2.5,38.2-0.4,27.9,0C17.6,0.5,7.8,8.1,6.5,8.9z"></path></g></g></svg>';
     var LINK_BUBBLE_PARSED = new DOMParser().parseFromString(LINK_BUBBLE, 'text/html');
     var LINK_BUBBLE_SVG = LINK_BUBBLE_PARSED.body.firstChild;
 
@@ -42,19 +45,9 @@ var LinkAnimation = (function () {
     };
 
     function appendBubble(link) {
-        var canvas = document.createElement('canvas');
         var svg = LINK_BUBBLE_SVG.cloneNode(true);
-        var link_size = link.getBoundingClientRect();
-        var size_attribute = link_size.width > link_size.height ? 'height' : 'width';
-        svg.setAttribute(size_attribute, link_size[size_attribute]);
 
         link.appendChild(svg);
-        var svg_size = svg.getBoundingClientRect();
-        svg.setAttribute('viewBox', '0 0 ' + Math.ceil(svg_size.width + 2) + ' ' + Math.ceil(svg_size.height + 2));
-
-        canvas.setAttribute('width', Math.ceil(svg_size.width));
-        canvas.setAttribute('height', Math.ceil(svg_size.height));
-        link.appendChild(canvas);
     }
 
     function initLinks() {
@@ -98,24 +91,17 @@ var LinkAnimation = (function () {
             }
         };
 
-        var svg2canvas = function () {
-            //TODO оптимизировать
-            canvg(canvas, svg.outerHTML);
-            setTimeout(svg2canvas, 35)
-        };
-
         loop();
-        svg2canvas();
     }
 })();
 
 LinkAnimation.init();
 
-
 var parallaxOnMouse = {
     container: undefined,
     layers: undefined,
     layer_count: undefined,
+    client_width_half: window.innerWidth * 0.5,
 
     addMouseMoveListener: function addMouseMoveListener() {
         var throttled_function = throttle(parallaxOnMouse.moveLayers, 100);
@@ -129,7 +115,7 @@ var parallaxOnMouse = {
         for (var i = 0; i < parallaxOnMouse.layer_count; i++) {
             var layer = parallaxOnMouse.layers[i];
             var momentum = layer.getAttribute('data-momentum');
-            var offset = mouse_x * momentum;
+            var offset = (mouse_x - parallaxOnMouse.client_width_half) * momentum;
 
             parallaxOnMouse.layers[i].style.transform = 'translateX(' + offset + 'px)';
         }

@@ -2,9 +2,10 @@
     position: relative;
 }
 
-.morph_link.active canvas,
-.morph_link:hover canvas {
-    opacity: 1;
+.morph_link.active svg,
+.morph_link:hover svg {
+    visibility: visible;
+    transform: translate(-50%, -50%) scale(1);;
 }
 
 .morph_link svg,
@@ -12,12 +13,16 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
-    opacity: 0;
-    transition: opacity 0.25s;
+    transform: translate(-50%, -50%) scale(0.1);
+    visibility: hidden;
+    transition: transform 0.25s;
     z-index: -1;
 }
 
+.parallax {
+    overflow: hidden;
+}
+
 .parallax__layer {
-    transition: transform 0.35s;
+    transition: transform 0.5s ease-out;
 }
