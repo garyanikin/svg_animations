@@ -19,6 +19,12 @@
     z-index: -1;
 }
 
+
+
+.svg_morph__step {
+    opacity: 0;
+}
+
 .parallax {
     overflow: hidden;
 }

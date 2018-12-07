@@ -11,25 +11,22 @@ var isMobile = !!navigator.userAgent.match(/(iPad)|(iPhone)|(iPod)|(android)|(we
  * @param context
  * @returns {Function}
  */
-function throttle() {
+function throttle(callback, wait, context = this) {
+    var timeout = null;
+    var callbackArgs = null;
 
+    var later = () => {
+        callback.apply(context, callbackArgs);
+        timeout = null;
+    };
+
+    return function() {
+        if (!timeout) {
+            callbackArgs = arguments;
+            timeout = setTimeout(later, wait);
+        }
+    }
 }
-// function throttle(callback, wait, context = this) {
-//     var timeout = null;
-//     var callbackArgs = null;
-//
-//     var later = () => {
-//         callback.apply(context, callbackArgs);
-//         timeout = null;
-//     };
-//
-//     return function() {
-//         if (!timeout) {
-//             callbackArgs = arguments;
-//             timeout = setTimeout(later, wait);
-//         }
-//     }
-// }
 
 /**
  * Анимация ссылок, при наведении на ссылку под ней появляется анимированный пузырь
@@ -97,6 +94,63 @@ var LinkAnimation = (function () {
 
 LinkAnimation.init();
 
+var MorphSVG = function MorphSVG(svg, autoplay) {
+    var shape;
+
+    if (autoplay) {
+        start();
+    }
+
+    return {
+        start: start,
+        stop: stop
+    };
+
+    function start() {
+        animate();
+    }
+
+    function stop() {
+        shape.stop();
+    }
+
+    function animate() {
+        var s = Snap(svg);
+        shape = s.select('.svg_morph__start');
+        var steps = s.selectAll('.svg_morph__step');
+
+        var layers = [];
+
+        for (var i = 0; i < steps.length; i++) {
+            var step = steps[i].node;
+
+            layers.push({
+                points: step.getAttribute('d'),
+                duration: Number(step.getAttribute('data-duration')) || 700,
+                delay: Number(step.getAttribute('data-delay')) || 0,
+            });
+        }
+
+        var animation_step = 1;
+        var loop = function () {
+            var layer = layers[animation_step++];
+            shape.animate({ d: layer.points }, layer.duration * 1000, mina.easeinout, function() {
+                setTimeout(function () {
+                    loop();
+                }, layer.delay);
+            });
+
+            if (animation_step == layers.length) {
+                animation_step = 0;
+            }
+        };
+
+        loop();
+    }
+};
+
+MorphSVG(document.getElementById('parallax_svg'), true);
+
 var parallaxOnMouse = {
     container: undefined,
     layers: undefined,
@@ -126,7 +180,7 @@ var parallaxOnMouse = {
         parallaxOnMouse.layers = layers;
         parallaxOnMouse.layer_count = layers.length;
 
-        parallaxOnMouse.addMouseMoveListener()
+        parallaxOnMouse.addMouseMoveListener();
     }
 };
 
