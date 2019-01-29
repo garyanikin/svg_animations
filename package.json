@@ -1,0 +1,17 @@
+{
+  "name": "alibek_animations",
+  "version": "1.0.0",
+  "description": "",
+  "main": "animations.js",
+  "dependencies": {},
+  "devDependencies": {
+    "@babel/cli": "^7.2.0",
+    "@babel/core": "^7.2.0",
+    "@babel/preset-env": "^7.2.0"
+  },
+  "scripts": {
+    "build": "babel animations.js -d build"
+  },
+  "author": "Gary Anikin <garyanikin@gmail.com>",
+  "license": "ISC"
+}

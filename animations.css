@@ -19,8 +19,6 @@
     z-index: -1;
 }
 
-
-
 .svg_morph__step {
     opacity: 0;
 }
@@ -37,10 +35,37 @@
     transform: scale(0.1) translateY(-50%);
     transform-origin: 50% 0;
     opacity: 0;
-    transition: transform 0.8s ease-out, opacity 0.5s ease-out;
+    transition: transform 0.45s ease-out, opacity 0.5s ease-out;
 }
 
 #parallax_svg.show {
     opacity: 1;
     transform: scale(1) translateY(-50%);
+}
+
+.preloader {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+}
+
+.preloader svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.preloader #group {
+    opacity: 1;
+    transition: opacity 0.15s;
+}
+
+.preloader.full-hide {
+    display: none;
+}
+.preloader.hide #group {
+    opacity: 0;
 }

@@ -5,7 +5,7 @@
 var isMobile = !!navigator.userAgent.match(/(iPad)|(iPhone)|(iPod)|(android)|(webOS)/i);
 
 /**
- * Не позволяет функции выполняться часто
+ * возвращает обёртку, передающую вызов callback не чаще, чем раз в wait миллисекунд
  * @param callback
  * @param wait
  * @param context
@@ -92,8 +92,6 @@ var LinkAnimation = (function () {
     }
 })();
 
-LinkAnimation.init();
-
 var MorphSVG = function MorphSVG(svg, autoplay) {
     var shape;
 
@@ -149,8 +147,6 @@ var MorphSVG = function MorphSVG(svg, autoplay) {
     }
 };
 
-MorphSVG(document.getElementById('parallax_svg'), true);
-
 var parallaxOnMouse = {
     container: undefined,
     layers: undefined,
@@ -184,11 +180,91 @@ var parallaxOnMouse = {
     }
 };
 
-var parallax_container = document.getElementsByClassName('parallax')[0];
-var parallax_layers = document.getElementsByClassName('parallax__layer');
-parallaxOnMouse.init(parallax_container, parallax_layers);
+var MorphPath = function MorphPath(path, path_end, duration) {
+    var end_point = path_end.node.getAttribute('d');
 
+    path.animate({ d: end_point}, duration, mina.easein, function() {
+        console.log('end');
+    });
+};
 
-document.addEventListener("DOMContentLoaded", function() {
-    document.getElementById('parallax_svg').classList.add("show");
-});
+var Loader = (function() {
+
+    return {
+        init: initLoaderLinks,
+        resize: resizeLoader,
+        open: loaderOpen,
+        close: loaderClose
+    };
+
+    function resizeLoader() {
+        var orig_width = 500;
+        var orig_height = 270;
+        var ratio = orig_width / orig_height;
+        var window_height = window.outerHeight * 2;
+        var window_width = window.outerWidth * 2;
+
+        if (window_width > window_height) {
+            document.getElementById('preloader').setAttribute('height', window_width * ratio + 'px');
+            document.getElementById('preloader').setAttribute('width', window_width + 'px');
+        } else {
+            document.getElementById('preloader').setAttribute('height', window_height + 'px');
+            document.getElementById('preloader').setAttribute('width', (window_height * ratio) + 'px');
+        }
+    }
+
+    function loaderClose(callback) {
+        var duration = 400;
+
+        for (var i = 1; i <= 6; i++) {
+            MorphPath(Snap('.preloader #group #Shape' + i), Snap('.preloader #group_end #Shape' + i), duration);
+        }
+
+        Snap('.preloader #group').animate({ transform: Snap('.preloader #group_end').node.getAttribute('transform')}, duration, mina.easein, function() {
+            document.getElementsByClassName('preloader')[0].classList.add('hide');
+            setTimeout(function() {
+                document.getElementsByClassName('preloader')[0].classList.add('full-hide');
+            }, 200);
+            callback && callback();
+        });
+    }
+
+    function loaderOpen(callback) {
+        var duration = 400;
+
+        Snap('.preloader #group').node.innerHTML = Snap('.preloader #group_start').node.innerHTML;
+        Snap('.preloader #group').animate({
+            transform: Snap('.preloader #group_start').node.getAttribute('transform')
+        }, 1);
+        document.getElementsByClassName('preloader')[0].classList.remove('full-hide');
+
+        setTimeout(function() {
+            document.getElementsByClassName('preloader')[0].classList.remove('hide');
+            for (var i = 1; i <= 6; i++) {
+                MorphPath(Snap('.preloader #group #Shape' + i), Snap('.preloader #group_center #Shape' + i), duration);
+            }
+
+            Snap('.preloader #group').animate({
+                transform: Snap('.preloader #group_center').node.getAttribute('transform')
+            }, duration, mina.easein, function() {
+                callback && callback();
+            });
+        }, 50);
+    }
+
+    function initLoaderLinks() {
+        var elements = document.getElementsByClassName('loader_link');
+        for(var i = 0, len = elements.length; i < len; i++) {
+            elements[i].addEventListener('click', function (e) {
+                var link = this.getAttribute('href');
+
+                loaderOpen(function() {
+                    location.href = link;
+                });
+
+                e.preventDefault();
+                e.stopPropagation();
+            });
+        }
+    }
+})();
